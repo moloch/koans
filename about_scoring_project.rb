@@ -33,14 +33,16 @@ require 'set'
 def score(dice)
   s = 0
   return s if (dice == [])
-  ones = dice.count(1)
-  fives = dice.count(5)
-  s += 1000 if dice.count(1) == 3
-  s += 100 * ones if ones >= 1 and ones < 3
-  s += 50 * fives if fives >= 1 and ones < 3
-  for d in dice.to_set.delete(1)
-    if (dice.count(d) == 3) 
-      s+= d*100
+  (1..6).each do |x|
+    n = dice.count(x)
+    if (x == 1)
+      s += 1000 + 100*(n-3) if n >= 3
+      s += 100 * n if n < 3 and n >= 1
+    elsif (x == 5)
+      s += 500 + 50*(n-3) if n >= 3
+      s += 50 * n if n < 3 and n >= 1
+    else
+      s += 100 * x if n == 3
     end
   end
   return s
