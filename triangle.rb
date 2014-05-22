@@ -13,8 +13,25 @@
 # and
 #   about_triangle_project_2.rb
 #
+#
+
+def handleIllegalTriangles(a,b,c)
+  a,b,c = [a,b,c].sort
+  raise TriangleError if a <= 0 or a + b <= c
+end
+
+
 def triangle(a, b, c)
-  # WRITE THIS CODE
+    handleIllegalTriangles(a,b,c)
+    if (a ==  b and b == c)
+      return :equilateral
+    else
+      if ( a == b or b == c or a == c )
+        return :isosceles
+      else
+        return :scalene
+      end
+    end
 end
 
 # Error class used in part 2.  No need to change this code.
