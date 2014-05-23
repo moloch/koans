@@ -5,15 +5,13 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
  class DiceSet
 
+   attr_reader :values
+
    def roll (n)
      @values = []
      (1..n).each do
        @values << 1 + rand(6)
      end
-   end
-
-   def values
-     @values
    end
 end
 
